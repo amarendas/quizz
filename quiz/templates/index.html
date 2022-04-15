@@ -11,17 +11,31 @@
 <body>
 
 <div class="container-fluid">
-    <h2>Techenology  Day  Quizz Questions</h2>
+    <h2>Techenology  Day  Quizz </h2>
     <p> Total no of questions: {{q_nos}}</P>
     <div class="row">
         <div class="col-md-2" style="background-color:lavender">
-            <p>List of authors</p>
+            <p>List of Topics</p>
+            {% if topics %}
+                <ol class="list-group">
+                    <li class="list-group-item">All </li>   
+                {% for q in topics%}
+                    <li class="list-group-item">{{q.name}} </li>
+                {% endfor %}
+                </ol>
+            {% else %}
+                <p> No questions availlable </P>
+            {% endif %}
         </div> 
         <div class="col-md-10" style="background-color:#bdc7c0">
+            List of Questions
             {% if q_list %}
-                <ol>
+                <ol class="list-group">
                 {% for q in q_list%}
-                    <li>{{q.question}} </li>
+                    <li class="list-group-item">{{q.question}} </li>
+                    <ul>
+                        <li>{{q.answer}} </li>
+                    </ul>
                 {% endfor %}
                 </ol>
             {% else %}
