@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>TechDay Quiz</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -10,9 +10,24 @@
 </head>
 <body>
 
-<div class="container">
-  <h1>My First Bootstrap Page</h1>
-  <p>This is some text.</p>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2" style="background-color:lavender">
+            <p>List of authors</p>
+        </div> 
+        <div class="col-md-10" style="background-color:#bdc7c0">
+            {% if q_list %}
+                <ul>
+                {% for q in q_list%}
+                    <li>{{q.question}} </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p> No questions availlable </P>
+            {% endif %}
+        </div>    
+    </div>
 </div>
 
 </body>
