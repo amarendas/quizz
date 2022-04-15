@@ -1,5 +1,7 @@
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from .models import Quiz_Question,Author, Subject
 
 def index(request):
-    return HttpResponse("Hi, Hello APD")
+    question_list =Quiz_Question.objects.all()
+    context={'q_list':question_list}
+    return render(request,'index.html', context)
