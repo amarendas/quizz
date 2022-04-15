@@ -10,7 +10,11 @@ LEVEL_CHOICE=[
 ]
 class Quiz_Question(models.Model):
     question=models.CharField(max_length=500)
-    answer=models.TextField(max_length=500)
+    opt1=models.CharField(max_length=200,null=True)
+    opt2=models.CharField(max_length=200,null=True)
+    opt3=models.CharField(max_length=200,null=True)
+    opt4=models.CharField(max_length=200,null=True)
+    answer=models.TextField(max_length=200)
     difficulty_level=models.CharField(
         max_length=1,
         choices=LEVEL_CHOICE,

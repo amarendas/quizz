@@ -32,10 +32,14 @@
             {% if q_list %}
                 <ol class="list-group">
                 {% for q in q_list%}
-                    <li class="list-group-item">{{q.question}} </li>
-                    <ul>
-                        <li>{{q.answer}} </li>
-                    </ul>
+                    <li class="list-group-item">{{q.question}}</li>
+                    <ol >
+                        <li >{{q.opt1}} </li>
+                        <li >{{q.opt2}} </li>
+                        <li >{{q.opt3}} </li>
+                        <li >{{q.opt4}} </li>
+                        <b>xAnswer: {{q.answer}}
+                    </ol>
                 {% endfor %}
                 </ol>
             {% else %}
