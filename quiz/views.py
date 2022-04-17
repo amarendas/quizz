@@ -14,10 +14,11 @@ def index(request):
     return render(request,'index.html', context)
 
 def filtered_by_topic(request,pk):
-    question_list =get_object_or_404(Quiz_Question,pk=pk)
+    sub=Subject.objects.get(pk=pk).name
+    question_list =Quiz_Question.objects.filter(subject__name=sub)
     topic_list=Subject.objects.all()
     
-    q_nos=Quiz_Question.objects.count()
+    q_nos=question_list.count()
     context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
     return render(request,'index.html', context)
 
