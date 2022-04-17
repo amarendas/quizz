@@ -1,53 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>TechDay Quiz</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container-fluid">
-    <h2>Techenology  Day  Quizz </h2>
-    <p> Total no of questions: {{q_nos}}</P>
-    <div class="row">
-        <div class="col-md-2" style="background-color:lavender">
-            <p>List of Topics</p>
-            {% if topics %}
-                <ol class="list-group">
-                    <li class="list-group-item">All </li>   
-                {% for q in topics%}
-                    <li class="list-group-item">{{q.name}} </li>
-                {% endfor %}
-                </ol>
-            {% else %}
-                <p> No questions availlable </P>
-            {% endif %}
-        </div> 
-        <div class="col-md-10" style="background-color:#bdc7c0">
-            List of Questions
-            {% if q_list %}
-                <ol class="list-group">
-                {% for q in q_list%}
-                    <li class="list-group-item">{{q.question}}</li>
-                    <ol >
-                        <li >{{q.opt1}} </li>
-                        <li >{{q.opt2}} </li>
-                        <li >{{q.opt3}} </li>
-                        <li >{{q.opt4}} </li>
-                        <b>Answer: {{q.answer}}
-                    </ol>
-                {% endfor %}
-                </ol>
-            {% else %}
-                <p> No questions availlable </P>
-            {% endif %}
-        </div>    
-    </div>
-</div>
 
-</body>
-</html>
+{% block main_body%}
+    <h3>List of Questions</h3>
+    {% if q_list %}
+        <ol class="list-group">
+        {% for q in q_list%}
+            <li class="list-group-item" style="background-color:lavender">{{q.question}}</li>
+            <ol >
+                <li >{{q.opt1}} </li>
+                <li >{{q.opt2}} </li>
+                <li >{{q.opt3}} </li>
+                <li >{{q.opt4}} </li>
+                <b>Answer: {{q.answer}}</b>
+            </ol>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p> No questions availlable </P>
+    {% endif %}
+{%endblock%}
