@@ -6,7 +6,7 @@
     {% if q_list %}
         <ol class="list-group">
         {% for q in q_list%}
-            <li class="list-group-item" style="background-color:lavender">{{q.question}}</li>
+            <li class="list-group-item" style="background-color:lavender">{{q.question}}. &emsp;&emsp;&emsp;  (Level:  {{q.difficulty_level}})</li>
             <ol >
                 <li >{{q.opt1}} </li>
                 <li >{{q.opt2}} </li>

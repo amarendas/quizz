@@ -20,7 +20,7 @@ class Quiz_Question(models.Model):
         choices=LEVEL_CHOICE,
         blank=FALSE,
         default='B',
-        help_text='Level of Dificulty',
+        help_text='Level of Dificulty to be juged by the author',
     )
     subject=models.ForeignKey('Subject', on_delete=models.SET_NULL,null=True)
     Author=models.ForeignKey('Author',on_delete=models.SET_NULL,null=True)

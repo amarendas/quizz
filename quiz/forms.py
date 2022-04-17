@@ -1,4 +1,4 @@
-# from django import forms
+from django import forms
 # class AddQ(forms.Form):
 #     question=forms.CharField(max_length=1000)
 #     opt1=forms.CharField(max_length=500)
@@ -13,11 +13,13 @@ from django.forms import ModelForm
 from .models import Quiz_Question,Author, Subject
 # ceate the form calss
 class AddQ (ModelForm):
+    answer= forms.CharField(widget=forms.Textarea(attrs={'cols': 40, 'rows': 4}))
     class Meta:
         model=Quiz_Question
-        fields=[ 'question','opt1','opt2', 'opt3', 'opt4','answer','subject']
+        fields=['difficulty_level', 'question','opt1','opt2', 'opt3', 'opt4','answer','subject']
         
 class AddS (ModelForm):
+    
     class Meta:
         model=Subject
         fields=[ 'name',]
