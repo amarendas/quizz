@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render,get_object_or_404
 from .models import Quiz_Question,Author, Subject
 from .forms import AddQ, AddS
 from django.contrib import messages
@@ -14,7 +14,7 @@ def index(request):
     return render(request,'index.html', context)
 
 def filtered_by_topic(request,pk):
-    question_list =Quiz_Question.objects.filter(pk=pk)
+    question_list =get_object_or_404(Quiz_Question,pk=pk)
     topic_list=Subject.objects.all()
     
     q_nos=Quiz_Question.objects.count()
