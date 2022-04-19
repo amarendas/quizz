@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
+{% block mid_block%}
+<p style="text-align:top;font-size: 22px"> Add a new question</p>
+{% endblock%}
 
  {% block main_body%}
- <h3> Add a new question</h3>
+ 
  <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}

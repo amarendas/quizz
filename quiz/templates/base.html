@@ -11,12 +11,18 @@
 <body>
 
 <div class="container-fluid">
-    <div class="well well-sm"><h1>Technology  Day  Quizz</h1></div>
+    <div class="well well-sm"><h1>Technology  Day  Quiz</h1></div>
     <div class="row" >
         <div class="col-md-2" style="background-color:#34c0eb; height: 45px">
             <p> Total no of questions: {{q_nos}}</P>
+        </div>  
+        <div class="col-md-4" style="background-color:#ccdce0; height: 45px;padding: 7px;">
+         {% block mid_block%}
+
+         {%endblock%}
+            
         </div>   
-        <div class="col-md-8" style="background-color:#ccdce0; height: 45px;padding: 7px;">
+        <div class="col-md-4" style="background-color:#ccdce0; height: 45px;padding: 7px;">
             <p class="text-right">
                 <a href = {% url 'addQ'%} class="btn btn-info" role="button">Add question</a>
                 <a href =  {% url 'addS'%}  class="btn btn-info" role="button">Add Topic</a>
@@ -24,7 +30,14 @@
             
         </div>  
         <div class="col-md-2" style="background-color:#34c0eb; height: 45px">
-            <p class="text-right"> User: {{request.user.username}}</P>
+            {%if user.is_authenticated%}
+                <p class="text-right" style="margin:10px"> User: {{request.user.username}} &emsp; &emsp; 
+                   <a href="{% url 'logout'%}?next={{request.path}}">  Logout</a>
+                </P>
+            {%else%}
+                <p style="margin:10px"><a  href="{% url 'login'%}?next={{request.path}}"> Login</a>
+                </p>
+             {% endif%}   
         </div>     
     </div>
     <div class="row">
@@ -39,14 +52,16 @@
                 {% endfor %}
                 </ol>
             {% else %}
-                <p> No questions availlable </P>
+                <p> No topic availlable </P>
             {% endif %}
             {%  endblock %}
         </div> 
         <div class="col-md-10" style="background-color:#bdc7c0">
-            {% block main_body%}
-            
-            {%endblock%}
+            <p style="margin:15px">
+                {% block main_body%}
+                
+                {%endblock%}
+            <p>
         </div>    
     </div>
 </div>

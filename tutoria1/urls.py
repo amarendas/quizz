@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django import views
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.shortcuts import render
 from quiz import views
 
@@ -24,5 +24,6 @@ urlpatterns = [
     path('',views.index,name='quiz'),
     path('addQ',views.addQuestion,name='addQ'),
     path('addS',views.addSubject,name='addS'),
-    path('quiz_by_topic/<int:pk>',views.filtered_by_topic,name='quiz_by_topic')
+    path('quiz_by_topic/<int:pk>',views.filtered_by_topic,name='quiz_by_topic'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
