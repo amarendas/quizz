@@ -3,6 +3,7 @@ from pickle import FALSE
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 LEVEL_CHOICE=[
     ('BASIC','BASIC'),
     ('INTR','INTERMEDIAT'),
@@ -29,6 +30,11 @@ class Quiz_Question(models.Model):
     
     def __str__(self):
         return self.question
+    
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('quiz-detail', args=[str(self.id)])
+    
     
 class Author(models.Model):
     name=models.CharField(max_length=30)

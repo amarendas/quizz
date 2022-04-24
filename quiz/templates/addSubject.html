@@ -2,11 +2,12 @@
 {% block mid_block%}
 <p style="text-align:top;font-size: 22px"> Add a new Subject: </p>
 {% endblock%}
+{% load crispy_forms_tags %}
  {% block main_body%}
  
  <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form|crispy }}
     <input type="submit" value="Submit">
 </form>
  {%endblock%}

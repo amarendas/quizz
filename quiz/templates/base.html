@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="well well-sm"><h1>Technology  Day  Quiz</h1></div>
+<div class="container-fluid" >
+    <div class="well well-sm"><h2>Technology  Day  Quiz</h2></div>
     <div class="row" >
         <div class="col-md-2" style="background-color:#34c0eb; height: 45px">
             <p> Total no of questions: {{q_nos}}</P>
@@ -24,8 +24,8 @@
         </div>   
         <div class="col-md-4" style="background-color:#ccdce0; height: 45px;padding: 7px;">
             <p class="text-right">
-                <a href = {% url 'addQ'%} class="btn btn-info" role="button">Add question</a>
-                <a href =  {% url 'addS'%}  class="btn btn-info" role="button">Add Topic</a>
+                <a href = {% url 'addQ'%} class="btn btn-info" role="button">Add Question</a>
+                <a href =  {% url 'addS'%}  class="btn btn-info" role="button">Add Subject</a>
             </p>
             
         </div>  
@@ -46,7 +46,10 @@
             <p>List of Topics</p>
             {% if topics %}
                 <ol class="list-group">
-                    <li class="list-group-item"><a href= {%url 'quiz'%} > All</a> </li>   
+                    <li class="list-group-item"><a href= {%url 'quiz'%} >  My Questions</a> </li>  
+                    {% if request.user.is_superuser %}
+                      <li class="list-group-item"><a href= {%url 'allQ'%} >All Questions</a> </li>
+                    {% endif%}  
                 {% for q in topics%}
                     <li class="list-group-item"><a href= {%url 'quiz_by_topic' q.pk%} > {{q.name}} </a></li>
                 {% endfor %}
@@ -57,11 +60,11 @@
             {%  endblock %}
         </div> 
         <div class="col-md-10" style="background-color:#bdc7c0">
-            <p style="margin:15px">
+            <div class="well well-sm" style ="margin.top:20px">
                 {% block main_body%}
                 
                 {%endblock%}
-            <p>
+            </div>
         </div>    
     </div>
 </div>

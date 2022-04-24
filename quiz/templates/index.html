@@ -1,29 +1,57 @@
 {% extends "base.html" %}
+
 {% block mid_block%}
 <p style="text-align:top;font-size: 22px"> List of Questions</p>
+
 {% endblock%}
 
 {% block main_body%}
     {%if user.is_authenticated%}
-    {% if q_list %}
-        <ol class="list-group">
-        {% for q in q_list%}
-            <li class="list-group-item" style="background-color:lavender">{{q.question}}. &emsp;&emsp;&emsp;  (Level:  {{q.difficulty_level}})</li>
-            <ol >
-                <li >{{q.opt1}} </li>
-                <li >{{q.opt2}} </li>
-                <li >{{q.opt3}} </li>
-                <li >{{q.opt4}} </li>
-                <b>Answer: {{q.answer}}</b>
-            </ol>
-        {% endfor %}
-        </ol>
-    {% else %}
+        {% if q_list %}
+            {% for q in q_list%}
+            <div class="row" style="background-color:lavender"> 
+                <div class="col-md-6" >
+                    <a href="{{q.get_absolute_url }}">{{q.question}}. </a> 
+                </div>
+                <div class="col-md-2" >
+                    By:  {{q.Author}}
+                </div> 
+                <div class="col-md-2" >
+                    (Level:  {{q.difficulty_level}})
+                </div> 
+                <div class="col-md-2" >
+                    <form action="{% url 'delete_question' q.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        
+                    </form>
+                    
+                </div>   
+            </div>  
+            
+            <div class ="row">
+                <div class ="col-md-6">
+                  <ol>
+                    <li >{{q.opt1}} </li>
+                    <li >{{q.opt2}} </li>
+                  </ol>
+                </div>
+                <div class=  "col-md-6">
+                    <ol >                                    
+                    <li >{{q.opt3}} </li>
+                    <li >{{q.opt4}} </li>
+                    </ol>
+                </div>
+            </div>
+                <b>Answer: {{q.answer}} </b><br> {{q.extra}}
+
+            
+            {% endfor %}
+        {% else %}
         <p> No questions availlable </P>
-    {% endif %}
+        {% endif %}
     {%else%}
     <h3> Please  <a href="{%url 'login' %}?next={{request.path}}">login </a> to see this page
-      
     </h3>
     {%endif%}
 {%endblock%}

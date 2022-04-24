@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 # class AddQ(forms.Form):
 #     question=forms.CharField(max_length=1000)
@@ -17,11 +16,11 @@ from .models import Quiz_Question,Author, Subject
 
 # ceate the form calss
 class AddQ (ModelForm):
-    extra= forms.CharField(widget=forms.Textarea(attrs={'cols': 20, 'rows': 2}))
+    extra= forms.CharField(widget=forms.Textarea(attrs={'cols': 80, 'rows': 2}))
     #answer= forms.CharField(widget=forms.Textarea(attrs={'cols': 1, 'rows': 1}))
     class Meta:
         model=Quiz_Question
-        fields=['difficulty_level', 'question','opt1','opt2', 'opt3', 'opt4','answer','extra','subject',]
+        fields=['difficulty_level','subject', 'question','opt1','opt2', 'opt3', 'opt4','answer','extra',]
         
 class AddS (ModelForm):
     

@@ -21,9 +21,12 @@ from quiz import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index,name='quiz'),
+    path('',views.allMyQuistions,name='quiz'),
+    path('allQuestions',views.index,name='allQ'),
     path('addQ',views.addQuestion,name='addQ'),
     path('addS',views.addSubject,name='addS'),
     path('quiz_by_topic/<int:pk>',views.filtered_by_topic,name='quiz_by_topic'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('quiz/<int:pk>', views.quiz_detail_view, name='quiz-detail'),
+    path('delete_question/<int:pk>',views.delete_question,name='delete_question')
 ]

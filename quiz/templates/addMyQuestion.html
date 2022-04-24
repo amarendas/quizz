@@ -1,14 +1,40 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block mid_block%}
 <p style="text-align:top;font-size: 22px"> Add a new question</p>
 {% endblock%}
 
- {% block main_body%}
+{% block main_body%}
  
  <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
+   <div class="row" > 
+      <div class="col-md-6" >
+      {{ form.subject|as_crispy_field }}
+      </div>
+      <div class="col-md-6" >
+      {{ form.difficulty_level|as_crispy_field }}
+      </div>
+   </div>
+   {{ form.question|as_crispy_field }}
+   <div class="row" > 
+      <div class="col-md-3" >
+      {{ form.opt1|as_crispy_field }}
+      </div>
+      <div class="col-md-3" >
+      {{ form.opt2|as_crispy_field }}
+      </div>
+      <div class="col-md-3" >
+         {{ form.opt3|as_crispy_field }}
+      </div>
+      <div class="col-md-3" >
+            {{ form.opt4|as_crispy_field }}
+      </div>
+   </div>
+   {{ form.answer|as_crispy_field }}
+   {{ form.extra|as_crispy_field }}
+    <input type="submit" value="Save">
 </form>
  {%endblock%}

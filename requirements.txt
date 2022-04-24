@@ -20,3 +20,4 @@ six==1.15.0
 sqlparse 
 urllib3 
 whitenoise==6.0.0
+django-crispy-forms==1.14.0

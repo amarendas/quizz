@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TechDay Quiz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="signin.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="well well-sm"><h1>Technology  Day  Quiz</h1></div>
+   
+    <div class="row"> 
+        <div class="col-md-2" >
+        </div>
+        <div class="col-md-8" >
+            <p style="margin:15px">
+                {% block main_body%}
+                
+                {%endblock%}
+            <p>
+        </div> 
+        <div class="col-md-2" >
+        </div>   
+    </div>
+</div>
+
+</body>
+</html>
