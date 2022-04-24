@@ -3,19 +3,20 @@ from django.urls import reverse
 from django.http import Http404
 from django.shortcuts import redirect, render,get_object_or_404
 
-from .models import Quiz_Question,Author, Subject
+from .models import Quiz_Question,Author, Subject,User
 from .forms import AddQ, AddS
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    if request.user.is_superuser:    
+    if request.user.is_superuser:  
+        authors=User.objects.all()  
         username=request.user.username
         question_list =Quiz_Question.objects.all()
         topic_list=Subject.objects.all()
         q_nos=question_list.count()
-        context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
+        context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list,'authors':authors}
         return render(request,'index.html', context)
     else:
         return redirect(allMyQuistions)
@@ -115,3 +116,13 @@ def delete_question(request,pk):
     q=Quiz_Question.objects.get(id=pk)
     q.delete()
     return redirect(index)
+
+@login_required
+def list_by_user(request,pk):
+    username=User.objects.get(pk=pk)
+    question_list =Quiz_Question.objects.filter(Author__username=username)
+    q_nos=question_list.count()
+    topic_list=Subject.objects.all()
+    context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
+    return render(request,'index.html', context)
+    

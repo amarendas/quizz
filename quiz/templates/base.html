@@ -10,11 +10,11 @@
 </head>
 <body>
 
-<div class="container-fluid" >
-    <div class="well well-sm"><h2>Technology  Day  Quiz</h2></div>
+<div class="container-fluid " >
+    <div class="row" style="background-color:blue;color:white;"><h2>  &nbsp &nbsp Technology  Day  Quiz</h2></div>
     <div class="row" >
-        <div class="col-md-2" style="background-color:#34c0eb; height: 45px">
-            <p> Total no of questions: {{q_nos}}</P>
+        <div class="col-md-2" style="background-color:#34c0eb; height: 45px;padding: 7px">
+            <h5> Total no of questions: {{q_nos}}</h5>
         </div>  
         <div class="col-md-4" style="background-color:#ccdce0; height: 45px;padding: 7px;">
          {% block mid_block%}
@@ -47,9 +47,7 @@
             {% if topics %}
                 <ol class="list-group">
                     <li class="list-group-item"><a href= {%url 'quiz'%} >  My Questions</a> </li>  
-                    {% if request.user.is_superuser %}
-                      <li class="list-group-item"><a href= {%url 'allQ'%} >All Questions</a> </li>
-                    {% endif%}  
+                      
                 {% for q in topics%}
                     <li class="list-group-item"><a href= {%url 'quiz_by_topic' q.pk%} > {{q.name}} </a></li>
                 {% endfor %}
@@ -57,6 +55,14 @@
             {% else %}
                 <p> No topic availlable </P>
             {% endif %}
+            {% if request.user.is_superuser %}
+                      <p><a href= {%url 'allQ'%} >All Questions</a> </p>
+                      {% for a in authors%}
+                        <li lass="list-group-item"> 
+                            <a href={%url 'list_by_user' a.pk %} >{{a.username}}</a>:{{a.email}}</li>
+                        {% endfor%}
+            {% endif%}
+
             {%  endblock %}
         </div> 
         <div class="col-md-10" style="background-color:#bdc7c0">
