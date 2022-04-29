@@ -8,8 +8,8 @@ from django.contrib.auth.models import User
 #     opt4=forms.CharField(max_length=500)
 #     Answer=forms.CharField(widget=forms.Textarea)
 
-from curses import meta
-from dataclasses import fields
+#from curses import meta
+#from dataclasses import fields
 from django.forms import ModelForm
 from .models import Quiz_Question,Author, Subject
 
@@ -20,7 +20,7 @@ class AddQ (ModelForm):
     #answer= forms.CharField(widget=forms.Textarea(attrs={'cols': 1, 'rows': 1}))
     class Meta:
         model=Quiz_Question
-        fields=['difficulty_level','subject', 'question','opt1','opt2', 'opt3', 'opt4','answer','extra',]
+        fields=['difficulty_level','subject', 'question','opt1','opt2', 'opt3', 'opt4','answer','extra', 'image',]
         
 class AddS (ModelForm):
     

@@ -30,17 +30,22 @@
             </div>  
             
             <div class ="row">
-                <div class ="col-md-6">
-                  <ol>
-                    <li >{{q.opt1}} </li>
-                    <li >{{q.opt2}} </li>
-                  </ol>
+                <div class ="col-md-4">
+                  
+                    <h4 >1.  {{q.opt1}} </h4>
+                    <h4 >2.  {{q.opt2}} </h4>
+                  
                 </div>
-                <div class=  "col-md-6">
-                    <ol >                                    
-                    <li >{{q.opt3}} </li>
-                    <li >{{q.opt4}} </li>
-                    </ol>
+                <div class=  "col-md-4">
+                                                       
+                    <h4 >3. {{q.opt3}} </h4>
+                    <h4 >4. {{q.opt4}} </h4>
+                    
+                </div>
+                <div class=  "col-md-4">
+                    {% if q.image %}
+                    <img src="{{ q.image.url}}" alt="connect" style="max-height:100px">
+                    {% endif %}
                 </div>
             </div>
                 <b>Answer: {{q.answer}} </b><br> {{q.extra}}

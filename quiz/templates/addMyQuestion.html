@@ -8,7 +8,7 @@
 
 {% block main_body%}
  
- <form action="" method="post">
+ <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
    <div class="row" > 
       <div class="col-md-6" >
@@ -35,6 +35,17 @@
    </div>
    {{ form.answer|as_crispy_field }}
    {{ form.extra|as_crispy_field }}
-    <input type="submit" value="Save">
+   <div class="row" > 
+      <div class="col-md-9" >
+      {{ form.image|as_crispy_field }}
+      </div>
+      <div class="col-md-3" >
+         <input type="submit" value="Save">
+      </div>
+   </div>
 </form>
+{% if img_obj %}  
+        <h3>Succesfully uploaded : {{img_obj.caption}}</h3>  
+        <img src="{{ form.image.url}}" alt="connect" style="max-height:300px">  
+{% endif %}  
  {%endblock%}

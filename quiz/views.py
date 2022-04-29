@@ -39,6 +39,8 @@ def filtered_by_topic(request,pk):
     q_nos=question_list.count()
     context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
     return render(request,'index.html', context)
+
+
 @login_required
 def quiz_detail_view(request,pk):
     try:
@@ -46,7 +48,7 @@ def quiz_detail_view(request,pk):
     except q.DoesNotExist:
         raise Http404('Book does not exist')
     if request.method=='POST':
-        form=AddQ(request.POST)
+        form=AddQ(request.POST,request.FILES)
         if form.is_valid():
             # Process Data
             f=form.save(commit=False) # Create the model instance with the form
@@ -71,13 +73,13 @@ def addQuestion(request):
     topic_list=Subject.objects.all()
     q_nos=Quiz_Question.objects.count()
     if request.method=='POST':
-        form=AddQ(request.POST)
+        form=AddQ(request.POST, request.FILES)
         if form.is_valid():
             # Process Data
             f=form.save(commit=False) # Create the model instance with the form
             f.Author=request.user  # Now change the model instant filds
             print(f.Author)         
-            f.save() # save the objectto data base
+            f.save() # save the object to data base
             messages.success(request, ('Your question was successfully added!'))
             cd=form.cleaned_data
             

@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 from django.shortcuts import render
 from quiz import views
+from django.conf import settings  
+from django.conf.urls.static import static  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +34,5 @@ urlpatterns = [
     path('list_by_auth/<int:pk>', views.list_by_user,name='list_by_user'),
     
 ]
+if settings.DEBUG:  
+        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)  
