@@ -46,14 +46,14 @@ def quiz_detail_view(request,pk):
     try:
         q = Quiz_Question.objects.get(pk=pk)
     except q.DoesNotExist:
-        raise Http404('Book does not exist')
+        raise Http404('Question does not exist')
     if request.method=='POST':
         form=AddQ(request.POST,request.FILES)
         if form.is_valid():
             # Process Data
             f=form.save(commit=False) # Create the model instance with the form
-            f.Author=request.user  # Now change the model instant filds
-            f.pk=q.id
+            f.Author=q.Author #  Not required as old author get modified if super user changes the question.
+            f.pk=q.id # Now change the model instant filds
             f.save() # save the object to data base
             messages.success(request, ('Your question was successfully added!'))
             cd=form.cleaned_data

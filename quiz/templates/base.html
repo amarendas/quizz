@@ -31,7 +31,13 @@
         </div>  
         <div class="col-md-2" style="background-color:#34c0eb; height: 45px">
             {%if user.is_authenticated%}
-                <p class="text-right" style="margin:10px"> User: {{request.user.username}} &emsp; &emsp; 
+                <p class="text-right" style="margin:10px"> User: {{request.user.username}}  
+                    {%if request.user.is_superuser%}
+                    (Admin)
+                    {%else%}
+                    &emsp; &emsp; 
+                    {%endif%}
+                    &emsp; &emsp;
                    <a href="{% url 'logout'%}?next={{request.path}}">  Logout</a>
                 </P>
             {%else%}
