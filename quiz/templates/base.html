@@ -33,7 +33,7 @@
             {%if user.is_authenticated%}
                 <p class="text-right" style="margin:10px"> User: {{request.user.username}}  
                     {%if request.user.is_superuser%}
-                    (Admin)
+                    Admin
                     {%else%}
                     &emsp; &emsp; 
                     {%endif%}
