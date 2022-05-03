@@ -130,6 +130,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
+
+# Keys specific to dropbox for storing image on dropbox
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 DROPBOX_OAUTH2_TOKEN='sl.BG75r1idlcx3LKCv46tcKNwSZg9U_EsrSOzg2Vvnia7zaeGH0O8AKaTNGiPLL7xC1_pii3Dyg5iJuFc5widrx_le_H-Nuzrn9U07tX1KF67xfX-b7hdA-EC5WqPWCU0EV0A4jEs'
 
