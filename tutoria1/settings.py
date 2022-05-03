@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b30vp95&0ja&%!we@tn^w(u8dan!=2*tpp^*-zmy)xl*#yst@j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -121,14 +121,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/' 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  
+#MEDIA_URL = '/media/' 
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN='sl.BG506ipHq_ZxwbgIBsvtxjsx3vM0t8zgPLIlYjXsulaO6R_heD-yUZuaZ95BLeCpcI7MBfvegs8Jpe7E9USr2Yvaas2iKGFV4sq5P4B3CZcf3WFqfGYRqPlLrU4x3v4roGk98_E'
+
 
 import django_heroku
 django_heroku.settings(locals())
