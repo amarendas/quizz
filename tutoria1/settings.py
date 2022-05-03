@@ -131,7 +131,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN='sl.BG506ipHq_ZxwbgIBsvtxjsx3vM0t8zgPLIlYjXsulaO6R_heD-yUZuaZ95BLeCpcI7MBfvegs8Jpe7E9USr2Yvaas2iKGFV4sq5P4B3CZcf3WFqfGYRqPlLrU4x3v4roGk98_E'
+DROPBOX_OAUTH2_TOKEN='sl.BG75r1idlcx3LKCv46tcKNwSZg9U_EsrSOzg2Vvnia7zaeGH0O8AKaTNGiPLL7xC1_pii3Dyg5iJuFc5widrx_le_H-Nuzrn9U07tX1KF67xfX-b7hdA-EC5WqPWCU0EV0A4jEs'
+
 
 
 import django_heroku
