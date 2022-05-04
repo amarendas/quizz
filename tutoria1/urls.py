@@ -32,6 +32,7 @@ urlpatterns = [
     path('quiz/<int:pk>', views.quiz_detail_view, name='quiz-detail'),
     path('delete_question/<int:pk>',views.delete_question,name='delete_question'),
     path('list_by_auth/<int:pk>', views.list_by_user,name='list_by_user'),
+    path('QuestionsExported', views.exportQlist,name='export'), # 'QuestionsExported Will be name of downloaded file
     
 ]
 if settings.DEBUG:  

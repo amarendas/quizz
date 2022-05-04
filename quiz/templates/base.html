@@ -62,7 +62,10 @@
                 <p> No topic availlable </P>
             {% endif %}
             {% if request.user.is_superuser %}
-                      <p><a href= {%url 'allQ'%} >All Questions</a> </p>
+                      <p>
+                          <a href= {%url 'allQ' %} class="btn btn-info" role="button" >All Questions</a>
+                         <a href = {% url 'export' %} class="btn btn-info" role="button">Download</a>
+                        </p>
                       {% for a in authors%}
                         <li lass="list-group-item"> 
                             <a href={%url 'list_by_user' a.pk %} >{{a.username}}</a>:{{a.email}}</li>

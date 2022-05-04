@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render,get_object_or_404
 
 from .models import Quiz_Question,Author, Subject,User
@@ -21,23 +21,37 @@ def index(request):
     else:
         return redirect(allMyQuistions)
 
-def allMyQuistions(request):    
+
+@login_required
+def allMyQuistions(request): 
+    if   request.user.is_superuser:
+         authors=User.objects.all()
+    else:
+        authors=''        
     username=request.user.username
     question_list =Quiz_Question.objects.filter(Author__username=username)
     topic_list=Subject.objects.all()
-    q_nos=question_list.count()
-    context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
+    q_nos=Quiz_Question.objects.count()
+    context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list,'authors':authors}
     return render(request,'index.html', context)
 
+
+@login_required
 def filtered_by_topic(request,pk):
     username=request.user.username
-    question_list =Quiz_Question.objects.filter(Author__username=username)
+    if   request.user.is_superuser:
+         authors=User.objects.all()
+         question_list =Quiz_Question.objects.all()
+    else:
+        authors='' 
+        question_list =Quiz_Question.objects.filter(Author__username=username)
+    
     sub=Subject.objects.get(pk=pk).name
     question_list =question_list.filter(subject__name=sub)
     topic_list=Subject.objects.all()
     
-    q_nos=question_list.count()
-    context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
+    q_nos=Quiz_Question.objects.count()
+    context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list, 'authors':authors}
     return render(request,'index.html', context)
 
 
@@ -127,4 +141,15 @@ def list_by_user(request,pk):
     topic_list=Subject.objects.all()
     context={'q_list':question_list,"q_nos":q_nos,'topics':topic_list}
     return render(request,'index.html', context)
-    
+
+# Added for downloading quiz table as csv
+import csv
+@login_required
+def exportQlist(request):
+    response=HttpResponse(content_type='text/csv')
+    write=csv.writer(response)
+    write.writerow(['question','opt1','opt2','opt3','opt4','answer', 'extra','subject', 'difficulty_level','image']) # created header row
+    for q in Quiz_Question.objects.all().values_list('question','opt1','opt2','opt3','opt4','answer', 'extra','subject', 'difficulty_level','image'):
+        write.writerow(q)
+    response['Content-Disposition']='attachment:filename="questions.csv"'
+    return response
