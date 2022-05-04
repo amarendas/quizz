@@ -121,8 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#MEDIA_URL = '/media/' 
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  
 
 
 # Default primary key field type
@@ -132,8 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 
 # Keys specific to dropbox for storing image on dropbox
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN='sl.BG8lLCgP5rN0Qky9QZM4TDFbwSCqNPqFHlvd6EZmVsU0hNu__aHNZVV7ZnCpSpPiHPadxSGRK4WeaUs8LzSpsqJhLMIkgY_90wsefCkpdWRe7PKuWeDf3CdeBWZBSfr0Qz0QMXI'
+#DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+#DROPBOX_OAUTH2_TOKEN='sl.BG8lLCgP5rN0Qky9QZM4TDFbwSCqNPqFHlvd6EZmVsU0hNu__aHNZVV7ZnCpSpPiHPadxSGRK4WeaUs8LzSpsqJhLMIkgY_90wsefCkpdWRe7PKuWeDf3CdeBWZBSfr0Qz0QMXI'
 
 
 

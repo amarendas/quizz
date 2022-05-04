@@ -35,7 +35,7 @@
             {{ form.extra|as_crispy_field }}
             <div class="row" > 
                 <div class="col-md-8" >
-                    {{ form.image|as_crispy_field }}
+                   <!--  {{ form.image|as_crispy_field }} -->
                 </div>
                 <div class="col-md-4" >
                    <input type="submit" value="Save">
@@ -43,7 +43,7 @@
              </div>           
         </form>
         {% if q.image %}
-        <h4> Current Immage</h4>
+        <h4> Current Image</h4>
         <img src="{{ q.image.url}}" alt="connect" style="max-height:100px">
         {% endif %}
     {%else%}
